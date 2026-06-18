@@ -1,0 +1,6 @@
+body{
+    font-family:  var(--primary-font );
+}
+h1,h2,h3,p,ul,li{
+    font-family: var(--secondary-font);
+}
