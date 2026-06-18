@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './blog.module.css'
-import Card from '../components/Card'
+import Card from '../components/card'
 
 const fetchProducts = async () => {
     //const response = await fetch('https://dummyjson.com/products', { cache: 'no-store' });
