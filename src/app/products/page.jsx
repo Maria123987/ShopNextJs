@@ -23,11 +23,13 @@ const Products = () => {
             <h2 className="text-center mt-5">Our Products</h2>
             {
                 products.map((product) => {
-                    return <div key={product.id}>
-                        <p>product Title: {product.title}</p>
-                        <p>product Title: {product.price}</p>
-                        <hr />
-                    </div>
+                    return (
+                        <div key={product.id}>
+                            <p>product Title: {product.title}</p>
+                            <p>product Title: {product.price}</p>
+                            <hr />
+                        </div>
+                    )
                 })
             }
         </div>
