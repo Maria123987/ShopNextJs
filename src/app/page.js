@@ -2,8 +2,14 @@
 import styles from "./page.module.css"
 import Image from 'next/image'
 import { Slide, Zoom } from 'react-awesome-reveal'
+import { useRouter } from 'next/navigation'
 
 const Home = () => {
+  const router = useRouter();
+  const handleRoute = () => {
+    router.push('/contact');
+  }
+
   return (
     <div className={styles.section}>
       <div className='container'>
@@ -17,7 +23,7 @@ const Home = () => {
             </Slide>
             <div className='mt-3'>
               <button className='btn btn-warning mx-1'>Read more</button>
-              <button className='btn btn-outline-primary mx-1'>Contact</button>
+              <button onClick={() => handleRoute()} className='btn btn-outline-primary mx-1'>Contact</button>
             </div>
           </div>
           <div className='col-lg-6'>
