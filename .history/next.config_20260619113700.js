@@ -2,10 +2,10 @@
 const nextConfig = {
     output: 'standalone',
     eslint: {
+        // این بخش رو اضافه کن:
         ignoreDuringBuilds: true,
     },
     images: {
-        unoptimized: true,
         remotePatterns: [
             {
                 protocol: 'https',
