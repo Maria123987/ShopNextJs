@@ -11,7 +11,7 @@ const inter = Inter({
 const roboto = Roboto({
   weight: ["300", "400", "500"],
   subsets: ['latin'],
-  variable: "--secondary-font",
+  variable: "--secondary-font"
 })
 
 export const metadata = {

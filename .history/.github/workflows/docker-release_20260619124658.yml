@@ -1,0 +1,53 @@
+name: Docker Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*" # فقط وقتی تگ ورژن بزنی (مثل v1.0.2) اجرا می‌شه
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata
+        id: meta
+        run: |
+          # تبدیل نام یوزرنیم به حروف کوچک برای جلوگیری از خطا در Docker
+          REPO_OWNER_LC=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "image=ghcr.io/${REPO_OWNER_LC}/shop-nextjs" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.tag }}
+            ${{ steps.meta.outputs.image }}:latest
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ steps.meta.outputs.tag }}
+          tag_name: ${{ steps.meta.outputs.tag }}
+          generate_release_notes: true
+          body: |
+            ### Docker Image Information
+            The image is available in GHCR:
+            - `docker pull ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.tag }}`
+            - `docker pull ${{ steps.meta.outputs.image }}:latest`

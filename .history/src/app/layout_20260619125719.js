@@ -6,12 +6,12 @@ import { Footer } from './components/footer';
 
 const inter = Inter({
   subsets: ['latin'],
-  variable: "--primary-font",
+  variable: "--primary-font"
 })
 const roboto = Roboto({
   weight: ["300", "400", "500"],
   subsets: ['latin'],
-  variable: "--secondary-font",
+  variable: "--secondary-font"
 })
 
 export const metadata = {

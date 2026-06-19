@@ -11,7 +11,7 @@ const Card = ({ id, title, price, category, thumbnail }) => {
                 <h5 className={Styles.cardTitle}>{title}</h5>
                 <p className="card-text">{price}</p>
                 <p className="card-text">{category}</p>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card content.</p>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
                 <a className="btn btn-outline-primary" href={`/blog/${id}`}>Detail</a>
             </div>
         </div>
